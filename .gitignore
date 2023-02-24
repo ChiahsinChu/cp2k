@@ -307,3 +307,7 @@ tags
 
 
 # End of https://www.gitignore.io/api/python,fortran,c,c++,cuda,emacs,vim
+
+*.wfn*
+*.cube
+
