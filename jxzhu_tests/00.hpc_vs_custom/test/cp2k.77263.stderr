@@ -1,0 +1,192 @@
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+
+Program received signal SIGILL: Illegal instruction.
+
+Backtrace for this error:
+#0  0x2B9CA5DE86F7
+#1  0x2B9CA5DE8D3E
+#2  0x2B9CA73E026F
+#0  0x2B4EDAE976F7
+#1  0x2B4EDAE97D3E
+#2  0x2B4EDC48F26F
+#0  0x2B33BA3DF6F7
+#1  0x2B33BA3DFD3E
+#2  0x2B33BB9D726F
+#0  0x2AB5EB33C6F7
+#1  0x2AB5EB33CD3E
+#0  0x2B64DEF226F7
+#1  0x2B64DEF22D3E
+#2  0x2AB5EC93426F
+#2  0x2B64E051A26F
+#0  0x2ABCF53C46F7
+#0  0x2B51A053B6F7
+#1  0x2B51A053BD3E
+#1  0x2ABCF53C4D3E
+#2  0x2ABCF69BC26F
+#2  0x2B51A1B3326F
+#0  0x2B13C8CE06F7
+#1  0x2B13C8CE0D3E
+#2  0x2B13CA2D826F
+#0  0x2AF0709BD6F7
+#1  0x2AF0709BDD3E
+#2  0x2AF071FB526F
+#0  0x2B88AC3166F7
+#1  0x2B88AC316D3E
+#2  0x2B88AD90E26F
+#0  0x2B0E012E66F7
+#1  0x2B0E012E6D3E
+#0  0x2B20742306F7
+#2  0x2B0E028DE26F
+#1  0x2B2074230D3E
+#2  0x2B207582826F
+#0  0x2B32B2E696F7
+#1  0x2B32B2E69D3E
+#2  0x2B32B446126F
+#0  0x2B84F90E16F7
+#1  0x2B84F90E1D3E
+#2  0x2B84FA6D926F
+#0  0x2B66CC7BD6F7
+#1  0x2B66CC7BDD3E
+#2  0x2B66CDDB526F
+#0  0x2B8F8E1036F7
+#0  0x2BA8B85686F7
+#1  0x2B8F8E103D3E
+#1  0x2BA8B8568D3E
+#2  0x2BA8B9B6026F
+#2  0x2B8F8F6FB26F
+#0  0x2B472D35C6F7
+#0  0x2B943B7216F7
+#1  0x2B943B721D3E
+#1  0x2B472D35CD3E
+#2  0x2B472E95426F
+#2  0x2B943CD1926F
+#0  0x2B2E5CF2B6F7
+#1  0x2B2E5CF2BD3E
+#0  0x2B8AD85216F7
+#2  0x2B2E5E52326F
+#1  0x2B8AD8521D3E
+#2  0x2B8AD9B1926F
+#0  0x2AC6C746C6F7
+#1  0x2AC6C746CD3E
+#2  0x2AC6C8A6426F
+#0  0x2AD48D1A56F7
+#1  0x2AD48D1A5D3E
+#2  0x2AD48E79D26F
+#0  0x2B2101EDA6F7
+#1  0x2B2101EDAD3E
+#2  0x2B21034D226F
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  #3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)
+#3  0x4D4B2A in MAIN__ at cp2k.F:102 (discriminator 6)

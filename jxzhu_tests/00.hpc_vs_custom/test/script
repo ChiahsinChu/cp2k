@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+#BSUB -q 51-small
+#BSUB -W 00:20
+#BSUB -J cp2k-test
+#BSUB -o cp2k.%J.stdout
+#BSUB -e cp2k.%J.stderr
+#BSUB -n 24
+#BSUB -R "span[ptile=24]"
+
+# add modulefiles
+module load intel/17.5.239 mpi/intel/2017.5.239
+module load gcc/7.4.0
+
+mpiexec.hydra ./cp2k.popt input.inp > output.out
+

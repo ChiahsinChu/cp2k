@@ -1,0 +1,57 @@
+Sender: LSF System <lsfadmin@c51-020>
+Subject: Job 77263: <cp2k-test> in cluster <xmuhpc> Exited
+
+Job <cp2k-test> was submitted from host <login01> by user <jxzhu> in cluster <xmuhpc> at Sat Feb 25 00:01:31 2023
+Job was executed on host(s) <24*c51-020>, in queue <51-small>, as user <jxzhu> in cluster <xmuhpc> at Fri Feb 24 23:52:09 2023
+</data/home/jxzhu> was used as the home directory.
+</data/jxzhu/software/cp2k-8.2/jxzhu_tests/00.hpc_vs_custom/test> was used as the working directory.
+Started at Fri Feb 24 23:52:09 2023
+Terminated at Fri Feb 24 23:52:16 2023
+Results reported at Fri Feb 24 23:52:16 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#
+#BSUB -q 51-small
+#BSUB -W 00:20
+#BSUB -J cp2k-test
+#BSUB -o cp2k.%J.stdout
+#BSUB -e cp2k.%J.stderr
+#BSUB -n 24
+#BSUB -R "span[ptile=24]"
+
+# add modulefiles
+module load intel/17.5.239 mpi/intel/2017.5.239
+module load gcc/7.4.0
+
+mpiexec.hydra ./cp2k.popt input.inp > output.out
+
+
+------------------------------------------------------------
+
+Exited with exit code 132.
+
+Resource usage summary:
+
+    CPU time :                                   5.16 sec.
+    Max Memory :                                 6 MB
+    Average Memory :                             6.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   28 MB
+    Max Processes :                              29
+    Max Threads :                                30
+    Run time :                                   7 sec.
+    Turnaround time :                            0 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <cp2k.77263.stderr> for stderr output of this job.
+
