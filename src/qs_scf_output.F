@@ -493,6 +493,10 @@ CONTAINS
                   scf_env%iter_count, TRIM(scf_env%iter_method), scf_env%iter_param, &
                   t2 - t1, scf_env%iter_delta, energy%total, energy%total - energy%tot_old
             END IF
+            WRITE(*, *) "WORK!"
+            OPEN(1, file = 'restart_energy.out', status = 'new')
+            WRITE(1, "(A, F20.10)") energy%tot_old 
+            CLOSE(1)
          END IF
       END IF
 
