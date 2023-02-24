@@ -50,7 +50,7 @@ case "$with_mpich" in
       unset F90FLAGS
 
       # workaround for compilation with GCC-10, until properly fixed:
-      #   https://github.com/pmodels/mpich/issues/4300
+      #   https://hub.fastgit.org/pmodels/mpich/issues/4300
       ("${FC}" --version | grep -Eq 'GNU.+\s10\.') && compat_flag="-fallow-argument-mismatch" || compat_flag=""
       ./configure --prefix="${pkg_install_dir}" --libdir="${pkg_install_dir}/lib" MPICC="" FFLAGS="${FCFLAGS} ${compat_flag}" FCFLAGS="${FCFLAGS} ${compat_flag}" --without-x --enable-gl=no > configure.log 2>&1
       make -j $(get_nprocs) > make.log 2>&1
@@ -67,7 +67,7 @@ case "$with_mpich" in
     check_command mpicc "mpich"
     check_command mpif90 "mpich"
     if [ $(command -v mpic++ >&- 2>&-) ]; then
-      check_command mpic++ "mpich"
+      check_command mpicxx "mpich"
     else
       check_command mpicxx "mpich"
       export MPICXX=mpicxx

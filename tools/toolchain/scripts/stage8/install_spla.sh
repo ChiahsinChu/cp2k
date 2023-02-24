@@ -34,7 +34,7 @@ case "$with_spla" in
         echo "SpLA-${spla_ver}.tar.gz is found"
       else
         download_pkg ${DOWNLOADER_FLAGS} ${spla_sha256} \
-          "https://github.com/eth-cscs/Spla/archive/v${spla_ver}.tar.gz" \
+          "https://hub.fastgit.org/eth-cscs/Spla/archive/v${spla_ver}.tar.gz" \
           -o SpLA-${spla_ver}.tar.gz
 
       fi

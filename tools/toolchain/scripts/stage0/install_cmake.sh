@@ -34,7 +34,7 @@ case "$with_cmake" in
         echo "cmake-${cmake_ver}.tar.gz is found"
       else
         download_pkg ${DOWNLOADER_FLAGS} ${cmake_sha256} \
-          https://github.com/Kitware/CMake/releases/download/v${cmake_ver}/cmake-${cmake_ver}.tar.gz
+          https://hub.fastgit.org/Kitware/CMake/releases/download/v${cmake_ver}/cmake-${cmake_ver}.tar.gz
       fi
       echo "Installing from scratch into ${pkg_install_dir}"
       [ -d cmake-${cmake_ver} ] && rm -rf cmake-${cmake_ver}

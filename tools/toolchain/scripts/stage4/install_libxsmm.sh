@@ -43,7 +43,7 @@ EOF
       if [ "$libxsmm_ver" = "master" ]; then
         download_pkg_no_checksum ${DOWNLOADER_FLAGS} \
           -o libxsmm-master.zip \
-          https://github.com/hfp/libxsmm/archive/master.zip
+          https://hub.fastgit.org/hfp/libxsmm/archive/master.zip
         [ -d libxsmm-master ] && rm -rf libxsmm-master
         unzip -q -o libxsmm-master.zip
       else

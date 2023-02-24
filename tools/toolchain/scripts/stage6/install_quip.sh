@@ -92,7 +92,7 @@ case "$with_quip" in
         arch/Makefile.linux_${quip_arch}_gfortran
 
       # workaround for compilation with GCC-10, until properly fixed:
-      #   https://github.com/libAtoms/QUIP/issues/209
+      #   https://hub.fastgit.org/libAtoms/QUIP/issues/209
       ("${FC}" --version | grep -Eq 'GNU.+\s10\.') && compat_flag="-fallow-argument-mismatch" || compat_flag=""
 
       # enable debug symbols

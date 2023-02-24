@@ -98,7 +98,7 @@ case "$with_sirius" in
         echo "sirius_${sirius_ver}.tar.gz is found"
       else
         download_pkg ${DOWNLOADER_FLAGS} ${sirius_sha256} \
-          "https://github.com/electronic-structure/SIRIUS/archive/v${sirius_ver}.tar.gz" \
+          "https://hub.fastgit.org/electronic-structure/SIRIUS/archive/v${sirius_ver}.tar.gz" \
           -o SIRIUS-${sirius_ver}.tar.gz
       fi
 
