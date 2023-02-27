@@ -487,7 +487,7 @@ CONTAINS
             !    "the slab [electrons-Angstroem]: ", &
             !    qs_env%surface_dipole_moment
 
-            OPEN(output_unit+1, file = 'surf_dipole_moment.out', status = 'new')
+            OPEN(output_unit+1, file = 'surf_dipole_moment.out', status = 'replace')
             ! WRITE(output_unit+1, "(F20.10)") qs_env%surface_dipole_moment
             WRITE(output_unit+1, *) "output_unit: ", output_unit
             WRITE(output_unit+1, *) "surface dipole moment [eA]: ", qs_env%surface_dipole_moment
