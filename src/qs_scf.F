@@ -482,10 +482,10 @@ CONTAINS
 
             CALL qs_scf_loop_info(scf_env, output_unit, just_energy, t1, t2, energy)
             
-            WRITE (UNIT=output_unit, FMT="((T3,A,/,T3,A,T41,F20.10))") &
-               "(Test) Total dipole moment perpendicular to ", &
-               "the slab [electrons-Angstroem]: ", &
-               qs_env%surface_dipole_moment
+            ! WRITE (UNIT=output_unit, FMT="((T3,A,/,T3,A,T41,F20.10))") &
+            !    "(Test) Total dipole moment perpendicular to ", &
+            !    "the slab [electrons-Angstroem]: ", &
+            !    qs_env%surface_dipole_moment
 
             OPEN(output_unit+1, file = 'surf_dipole_moment.out', status = 'new')
             ! WRITE(output_unit+1, "(F20.10)") qs_env%surface_dipole_moment
