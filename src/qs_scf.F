@@ -167,7 +167,6 @@ MODULE qs_scf
    USE qs_wf_history_methods,           ONLY: wfi_purge_history,&
                                               wfi_update
    USE scf_control_types,               ONLY: scf_control_type
-   USE surface_dipole,                  ONLY: print_dipsurf_potential
 #include "./base/base_uses.f90"
 
    IMPLICIT NONE
@@ -484,18 +483,9 @@ CONTAINS
             CALL qs_scf_loop_info(scf_env, output_unit, just_energy, t1, t2, energy)
 
             IF (output_unit > 0) THEN
-               WRITE(*, *) "qs_scf: checkpoint 1"
                OPEN(output_unit+1, file = 'surf_dipole_moment.out', status = 'replace')
-               ! IF (.NOT. (dft_control%correct_surf_dip)) THEN
-               !    WRITE(*, *) "qs_scf: checkpoint 2"
-               !    CALL print_dipsurf_potential(qs_env)
-               ! END IF
-               WRITE(*, *) "qs_scf: checkpoint 3"
                WRITE(output_unit+1, "(F20.10)") qs_env%surface_dipole_moment
-               ! WRITE(output_unit+1, *) "output_unit: ", output_unit
-               ! WRITE(output_unit+1, *) "surface dipole moment [eA]: ", qs_env%surface_dipole_moment
                CLOSE(output_unit+1)
-               WRITE(*, *) "qs_scf: checkpoint 4"
             END IF
             
 

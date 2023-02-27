@@ -471,9 +471,7 @@ CONTAINS
             energy%hartree = energy%hartree + energy%surf_dipole
          END IF
       ELSE
-         WRITE(*, *) "qs_ks_methods: checkpoint 1"
          CALL print_dipsurf_potential(qs_env) 
-         WRITE(*, *) "qs_ks_methods: checkpoint 2"
       END IF
 
       ! SIC

@@ -283,7 +283,6 @@ CONTAINS
    SUBROUTINE print_dipsurf_potential(qs_env)
 
       TYPE(qs_environment_type), POINTER                 :: qs_env
-      ! TYPE(qs_energy_type), POINTER                      :: energy
 
       CHARACTER(len=*), PARAMETER :: routineN = 'print_dipsurf_potential'
 
@@ -304,11 +303,9 @@ CONTAINS
       TYPE(pw_p_type), POINTER                           :: rho0_s_gs, rho_core
       TYPE(pw_pool_p_type), DIMENSION(:), POINTER        :: pw_pools
       TYPE(pw_pool_type), POINTER                        :: auxbas_pw_pool
-      ! TYPE(pw_type), POINTER                             :: v_hartree_rspace
       TYPE(qs_rho_type), POINTER                         :: rho
       TYPE(qs_subsys_type), POINTER                      :: subsys
 
-      WRITE(*, *) "surface_dipole: checkpoint 1"
       CALL timeset(routineN, handle)
       NULLIFY (cell, dft_control, rho, pw_env, rho_core, rho0_s_gs, auxbas_pw_pool, &
                pw_pools, subsys, rho_r)
@@ -327,10 +324,7 @@ CONTAINS
       CALL pw_pool_create_pw(auxbas_pw_pool, wf_r%pw, &
                              use_data=REALDATA3D, &
                              in_space=REALSPACE)
-      ! CALL pw_pool_create_pw(auxbas_pw_pool, vdip_r%pw, &
-      !                        use_data=REALDATA3D, &
-      !                        in_space=REALSPACE)
-      WRITE(*, *) "surface_dipole: checkpoint 2"
+
       IF (dft_control%qs_control%gapw) THEN
          CALL pw_transfer(rho0_s_gs%pw, wf_r%pw)
          IF (dft_control%qs_control%gapw_control%nopaw_as_gpw) THEN
@@ -339,18 +333,14 @@ CONTAINS
       ELSE
          CALL pw_transfer(rho_core%pw, wf_r%pw)
       END IF
-      WRITE(*, *) "surface_dipole: checkpoint 3"
+
       CALL qs_rho_get(rho, rho_r=rho_r)
-      WRITE(*, *) "surface_dipole: checkpoint 4"
       DO ispin = 1, dft_control%nspins
          CALL pw_axpy(rho_r(ispin)%pw, wf_r%pw)
       END DO
-      WRITE(*, *) "surface_dipole: checkpoint 5"
 
       ngrid(1:3) = wf_r%pw%pw_grid%npts(1:3)
       idir_surfdip = dft_control%dir_surf_dip
-      WRITE(*, *) "idir_surfdip: ", idir_surfdip
-      WRITE(*, *) "surface_dipole: checkpoint 6"
       width = 4
 
       DO i = 1, 3
@@ -369,7 +359,6 @@ CONTAINS
 
       ilow = wf_r%pw%pw_grid%bounds(1, idir_surfdip)
       iup = wf_r%pw%pw_grid%bounds(2, idir_surfdip)
-      WRITE(*, *) "surface_dipole: checkpoint 3"
       ALLOCATE (rhoavsurf(ilow:iup))
       rhoavsurf = 0.0_dp
 
@@ -411,7 +400,6 @@ CONTAINS
          CALL mp_sum(rhoavsurf, wf_r%pw%pw_grid%para%group)
       END IF
       rhoavsurf(ilow:iup) = dsurf*rhoavsurf(ilow:iup)
-      WRITE(*, *) "checkpoint 4"
       ! locate where the vacuum is, and set the reference point for the calculation of the dipole
       rhoavsurf(ilow:iup) = rhoavsurf(ilow:iup)/surfarea
       ! Note: rhosurf has the same dimension as rho
@@ -450,58 +438,8 @@ CONTAINS
       END DO
 
       DEALLOCATE (rhoavsurf)
-! for printing purposes [SGh]
+
       qs_env%surface_dipole_moment = dip_hh/bohr
-      WRITE(*, *) "checkpoint 5"
-! !    Calculation of the dipole potential as a function of the perpendicular coordinate
-!       CALL pw_zero(vdip_r%pw)
-!       vdip_fac = dip_hh*4.0_dp*pi
-
-!       DO i = ilayer_min + 1, ilayer_min + ngrid(idir_surfdip)
-!          hh = REAL((i - ilayer_min), dp)*dh(idir_surfdip, idir_surfdip)
-!          vdip = vdip_fac*(-0.5_dp + (hh/cell%hmat(idir_surfdip, idir_surfdip)))* &
-!                 v_hartree_rspace%pw_grid%dvol/surfarea
-!          IF (i > iup) THEN
-!             irho = i - ngrid(idir_surfdip)
-!          ELSE
-!             irho = i
-!          END IF
-! ! introduce a cutoff function to smoothen the edges
-!          IF (ABS(irho - ilayer_min) > width) THEN
-!             cutoff = 1.0_dp
-!          ELSE
-!             cutoff = ABS(SIN(0.5_dp*pi*REAL(ABS(irho - ilayer_min), dp)/REAL(width, dp)))
-!          ENDIF
-!          vdip = vdip*cutoff
-
-!          IF (idir_surfdip == 3) THEN
-!             vdip_r%pw%cr3d(bo(1, 1):bo(2, 1), bo(1, 2):bo(2, 2), irho) = &
-!                vdip_r%pw%cr3d(bo(1, 1):bo(2, 1), bo(1, 2):bo(2, 2), irho) + vdip
-!          ELSEIF (idir_surfdip == 2) THEN
-!             IF (irho >= bo(1, 2) .AND. irho <= bo(2, 2)) THEN
-!                vdip_r%pw%cr3d(bo(1, 1):bo(2, 1), irho, bo(1, 3):bo(2, 3)) = &
-!                   vdip_r%pw%cr3d(bo(1, 1):bo(2, 1), irho, bo(1, 3):bo(2, 3)) + vdip
-!             END IF
-!          ELSE
-!             IF (irho >= bo(1, 1) .AND. irho <= bo(2, 1)) THEN
-!                vdip_r%pw%cr3d(irho, bo(1, 2):bo(2, 2), bo(1, 3):bo(2, 3)) = &
-!                   vdip_r%pw%cr3d(irho, bo(1, 2):bo(2, 2), bo(1, 3):bo(2, 3)) + vdip
-!             END IF
-!          END IF
-
-!       END DO
-
-! !    Dipole correction contribution to the energy
-!       energy%surf_dipole = 0.5_dp*accurate_sum(vdip_r%pw%cr3d*wf_r%pw%cr3d)
-!       IF (wf_r%pw%pw_grid%para%mode /= PW_MODE_LOCAL) THEN
-!          CALL mp_sum(energy%surf_dipole, wf_r%pw%pw_grid%para%group)
-!       END IF
-
-! !    Add the dipole potential to the hartree potential on the realspace grid
-!       v_hartree_rspace%cr3d = v_hartree_rspace%cr3d+vdip_r%pw%cr3d
-
-!       CALL pw_pool_give_back_pw(auxbas_pw_pool, wf_r%pw)
-!       CALL pw_pool_give_back_pw(auxbas_pw_pool, vdip_r%pw)
 
       CALL timestop(handle)
 
