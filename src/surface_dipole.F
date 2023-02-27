@@ -285,9 +285,9 @@ CONTAINS
       TYPE(qs_environment_type), POINTER                 :: qs_env
       ! TYPE(qs_energy_type), POINTER                      :: energy
 
-      ! CHARACTER(len=*), PARAMETER :: routineN = 'print_dipsurf_potential'
+      CHARACTER(len=*), PARAMETER :: routineN = 'print_dipsurf_potential'
 
-      INTEGER                                            :: i, idir_surfdip, ilayer_min, &
+      INTEGER                                            :: handle, i, idir_surfdip, ilayer_min, &
                                                             ilow, irho, ispin, isurf, iup, jsurf, &
                                                             width
       INTEGER, DIMENSION(3)                              :: ngrid
@@ -308,8 +308,8 @@ CONTAINS
       TYPE(qs_rho_type), POINTER                         :: rho
       TYPE(qs_subsys_type), POINTER                      :: subsys
 
-      WRITE(*, *) "checkpoint 1"
-      ! CALL timeset(routineN, handle)
+      WRITE(*, *) "surface_dipole: checkpoint 1"
+      CALL timeset(routineN, handle)
       NULLIFY (cell, dft_control, rho, pw_env, rho_core, rho0_s_gs, auxbas_pw_pool, &
                pw_pools, subsys, rho_r)
 
@@ -330,7 +330,7 @@ CONTAINS
       ! CALL pw_pool_create_pw(auxbas_pw_pool, vdip_r%pw, &
       !                        use_data=REALDATA3D, &
       !                        in_space=REALSPACE)
-      WRITE(*, *) "checkpoint 2"
+      WRITE(*, *) "surface_dipole: checkpoint 2"
       IF (dft_control%qs_control%gapw) THEN
          CALL pw_transfer(rho0_s_gs%pw, wf_r%pw)
          IF (dft_control%qs_control%gapw_control%nopaw_as_gpw) THEN
@@ -339,14 +339,18 @@ CONTAINS
       ELSE
          CALL pw_transfer(rho_core%pw, wf_r%pw)
       END IF
+      WRITE(*, *) "surface_dipole: checkpoint 3"
       CALL qs_rho_get(rho, rho_r=rho_r)
+      WRITE(*, *) "surface_dipole: checkpoint 4"
       DO ispin = 1, dft_control%nspins
          CALL pw_axpy(rho_r(ispin)%pw, wf_r%pw)
       END DO
+      WRITE(*, *) "surface_dipole: checkpoint 5"
 
       ngrid(1:3) = wf_r%pw%pw_grid%npts(1:3)
       idir_surfdip = dft_control%dir_surf_dip
-
+      WRITE(*, *) "idir_surfdip: ", idir_surfdip
+      WRITE(*, *) "surface_dipole: checkpoint 6"
       width = 4
 
       DO i = 1, 3
@@ -365,7 +369,7 @@ CONTAINS
 
       ilow = wf_r%pw%pw_grid%bounds(1, idir_surfdip)
       iup = wf_r%pw%pw_grid%bounds(2, idir_surfdip)
-      WRITE(*, *) "checkpoint 3"
+      WRITE(*, *) "surface_dipole: checkpoint 3"
       ALLOCATE (rhoavsurf(ilow:iup))
       rhoavsurf = 0.0_dp
 
@@ -499,7 +503,7 @@ CONTAINS
 !       CALL pw_pool_give_back_pw(auxbas_pw_pool, wf_r%pw)
 !       CALL pw_pool_give_back_pw(auxbas_pw_pool, vdip_r%pw)
 
-      ! CALL timestop(handle)
+      CALL timestop(handle)
 
    
    END SUBROUTINE print_dipsurf_potential
