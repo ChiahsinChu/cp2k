@@ -285,9 +285,9 @@ CONTAINS
       TYPE(qs_environment_type), POINTER                 :: qs_env
       ! TYPE(qs_energy_type), POINTER                      :: energy
 
-      CHARACTER(len=*), PARAMETER :: routineN = 'print_dipsurf_potential'
+      ! CHARACTER(len=*), PARAMETER :: routineN = 'print_dipsurf_potential'
 
-      INTEGER                                            :: handle, i, idir_surfdip, ilayer_min, &
+      INTEGER                                            :: i, idir_surfdip, ilayer_min, &
                                                             ilow, irho, ispin, isurf, iup, jsurf, &
                                                             width
       INTEGER, DIMENSION(3)                              :: ngrid
@@ -308,7 +308,8 @@ CONTAINS
       TYPE(qs_rho_type), POINTER                         :: rho
       TYPE(qs_subsys_type), POINTER                      :: subsys
 
-      CALL timeset(routineN, handle)
+      WRITE(*, *) "checkpoint 1"
+      ! CALL timeset(routineN, handle)
       NULLIFY (cell, dft_control, rho, pw_env, rho_core, rho0_s_gs, auxbas_pw_pool, &
                pw_pools, subsys, rho_r)
 
@@ -329,7 +330,7 @@ CONTAINS
       ! CALL pw_pool_create_pw(auxbas_pw_pool, vdip_r%pw, &
       !                        use_data=REALDATA3D, &
       !                        in_space=REALSPACE)
-
+      WRITE(*, *) "checkpoint 2"
       IF (dft_control%qs_control%gapw) THEN
          CALL pw_transfer(rho0_s_gs%pw, wf_r%pw)
          IF (dft_control%qs_control%gapw_control%nopaw_as_gpw) THEN
@@ -364,7 +365,7 @@ CONTAINS
 
       ilow = wf_r%pw%pw_grid%bounds(1, idir_surfdip)
       iup = wf_r%pw%pw_grid%bounds(2, idir_surfdip)
-
+      WRITE(*, *) "checkpoint 3"
       ALLOCATE (rhoavsurf(ilow:iup))
       rhoavsurf = 0.0_dp
 
@@ -406,7 +407,7 @@ CONTAINS
          CALL mp_sum(rhoavsurf, wf_r%pw%pw_grid%para%group)
       END IF
       rhoavsurf(ilow:iup) = dsurf*rhoavsurf(ilow:iup)
-
+      WRITE(*, *) "checkpoint 4"
       ! locate where the vacuum is, and set the reference point for the calculation of the dipole
       rhoavsurf(ilow:iup) = rhoavsurf(ilow:iup)/surfarea
       ! Note: rhosurf has the same dimension as rho
@@ -447,7 +448,7 @@ CONTAINS
       DEALLOCATE (rhoavsurf)
 ! for printing purposes [SGh]
       qs_env%surface_dipole_moment = dip_hh/bohr
-
+      WRITE(*, *) "checkpoint 5"
 ! !    Calculation of the dipole potential as a function of the perpendicular coordinate
 !       CALL pw_zero(vdip_r%pw)
 !       vdip_fac = dip_hh*4.0_dp*pi
@@ -498,7 +499,7 @@ CONTAINS
 !       CALL pw_pool_give_back_pw(auxbas_pw_pool, wf_r%pw)
 !       CALL pw_pool_give_back_pw(auxbas_pw_pool, vdip_r%pw)
 
-      CALL timestop(handle)
+      ! CALL timestop(handle)
 
    
    END SUBROUTINE print_dipsurf_potential
