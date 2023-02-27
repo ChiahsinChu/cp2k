@@ -147,7 +147,8 @@ MODULE qs_ks_methods
    USE rtp_admm_methods,                ONLY: rtp_admm_calc_rho_aux,&
                                               rtp_admm_merge_ks_matrix
    USE se_fock_matrix,                  ONLY: build_se_fock_matrix
-   USE surface_dipole,                  ONLY: calc_dipsurf_potential
+   USE surface_dipole,                  ONLY: calc_dipsurf_potential,&
+                                              print_dipsurf_potential
    USE virial_types,                    ONLY: virial_type
    USE xtb_matrices,                    ONLY: build_xtb_ks_matrix
 #include "./base/base_uses.f90"
@@ -469,6 +470,10 @@ CONTAINS
             CALL calc_dipsurf_potential(qs_env, energy)
             energy%hartree = energy%hartree + energy%surf_dipole
          END IF
+      ELSE
+         WRITE(*, *) "qs_ks_methods: checkpoint 1"
+         CALL print_dipsurf_potential(qs_env) 
+         WRITE(*, *) "qs_ks_methods: checkpoint 2"
       END IF
 
       ! SIC

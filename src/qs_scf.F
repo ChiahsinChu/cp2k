@@ -486,10 +486,10 @@ CONTAINS
             IF (output_unit > 0) THEN
                WRITE(*, *) "qs_scf: checkpoint 1"
                OPEN(output_unit+1, file = 'surf_dipole_moment.out', status = 'replace')
-               IF (.NOT. (dft_control%correct_surf_dip)) THEN
-                  WRITE(*, *) "qs_scf: checkpoint 2"
-                  CALL print_dipsurf_potential(qs_env)
-               END IF
+               ! IF (.NOT. (dft_control%correct_surf_dip)) THEN
+               !    WRITE(*, *) "qs_scf: checkpoint 2"
+               !    CALL print_dipsurf_potential(qs_env)
+               ! END IF
                WRITE(*, *) "qs_scf: checkpoint 3"
                WRITE(output_unit+1, "(F20.10)") qs_env%surface_dipole_moment
                ! WRITE(output_unit+1, *) "output_unit: ", output_unit
